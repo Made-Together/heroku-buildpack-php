@@ -19,6 +19,8 @@ http {
 	server_tokens off;
 
 	fastcgi_buffers 256 4k;
+	fastcgi_cache_path /tmp/nginx/cache levels=1:2 keys_zone=phpcache:100m max_size=10g inactive=60m use_temp_path=off;
+	fastcgi_cache_key "$scheme$request_method$host$request_uri";
 
 	# define an easy to reference name that can be used in fastgi_pass
 	upstream heroku-fcgi {
